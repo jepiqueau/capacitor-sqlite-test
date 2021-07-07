@@ -45,25 +45,47 @@ export default defineComponent({
     }
 
     try {
-      await db.run(
-        'INSERT INTO finance (amount, description, wallet_id, units, units_amount) VALUES (?, ?, ?, ?, ?)',
+      const ret = await db.run(
+        'INSERT INTO finance (amount, description, wallet_id, units, units_amount) VALUES (?,?,?,?,?)',
         [10, null, null, null, null]
       );
-    } catch(err) { err }
+      console.log(`ret 1 ${JSON.stringify(ret)}`)
+    } catch(err) {
+      console.log(`err 1 ${err}`) 
+      err
+    }
 
     try {
-      await db.run(
+      const ret = await db.run(
         'INSERT INTO finance (amount, description, wallet_id, units, units_amount) VALUES (?, ?, ?, ?, ?)',
         [-10, undefined, undefined, undefined, undefined]
       );
-    } catch(err) { err }
+      console.log(`ret 2 ${JSON.stringify(ret)}`)
+    } catch(err) {
+      console.log(`err 2 ${err}`) 
+      err
+    }
+    try {
+      const ret = await db.run(
+        'INSERT INTO wallet (id,name) VALUES (?, ?)',
+        [1, "myTest"]
+      );
+      console.log(`ret 3 ${JSON.stringify(ret)}`)
+    } catch(err) {
+      console.log(`err 3 ${err}`) 
+      err
+    }
 
     try {
-      await db.run(
+      const ret = await db.run(
         'INSERT INTO finance (amount, description, wallet_id, units, units_amount) VALUES (?, ?, ?, ?, ?)',
         [20, 'test', 1, 1, 20]
       );
-    } catch(err) { err }
+      console.log(`ret 4 ${JSON.stringify(ret)}`)
+    } catch(err) {
+      console.log(`err 4 ${err}`) 
+      err
+    }
 
     const result = await db.query('SELECT * FROM finance');
 
